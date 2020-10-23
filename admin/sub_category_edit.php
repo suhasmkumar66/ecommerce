@@ -4,10 +4,11 @@
 	if(isset($_POST['edit'])){
 		$id = $_POST['id'];
 		$name = $_POST['name'];
+		$editcategoryid = $_POST['editcategoryid'];
 
 		try{
-			$stmt = $conn->prepare("UPDATE sub_category SET sub_categoryname=:name WHERE id=:id");
-			$stmt->execute(['name'=>$name, 'id'=>$id]);
+			$stmt = $conn->prepare("UPDATE sub_category SET sub_categoryname=:name,category_id=:editcategoryid WHERE id=:id");
+			$stmt->execute(['name'=>$name,'editcategoryid'=>$editcategoryid,'id'=>$id]);
 			$_SESSION['success'] = 'Sub Category updated successfully';
 		}
 		catch(PDOException $e){

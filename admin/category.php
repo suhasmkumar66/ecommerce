@@ -61,24 +61,10 @@
                     $conn = $pdo->open();
 
                     try{
-                      $stmt = $conn->prepare("SELECT * FROM category");
+                      $stmt = $conn->prepare("SELECT * FROM category where Is_Active = '1'");
                       $stmt->execute();
                       foreach($stmt as $row){
-                        $subcategoryaid = $row['sub_category_id1'];
-                        $subcategorybid = $row['sub_category_id2'];
-                        $stmt1 = $conn->prepare("SELECT * FROM sub_category where id = '$subcategoryaid'");
-                        $stmt1->execute();
-                        $subcategorya = "";
-                        foreach($stmt1 as $row1){
-                          $subcategorya = $row1['sub_categoryname'];
-                        }
-
-                        $stmt2 = $conn->prepare("SELECT * FROM sub_category where id = '$subcategorybid'");
-                        $stmt2->execute();
-                        $subcategoryb = "";
-                        foreach($stmt2 as $row2){
-                          $subcategoryb = $row2['sub_categoryname'];
-                        }
+                        
 
                         echo "
                           <tr>
@@ -150,17 +136,7 @@ function getRow(id){
   });
 }
 
-function getSubCategory(){
-  $.ajax({
-    type: 'POST',
-    url: 'sub_category_fetch.php',
-    dataType: 'json',
-    success:function(response){
-      $('#edit_subcategory1').append(response);
-      $('#edit_subcategory2').append(response);
-    }
-  });
-}
+
 </script>
 </body>
 </html>

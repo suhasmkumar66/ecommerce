@@ -88,6 +88,35 @@
                     </select>
                   </div>
                 </div>
+                  <div class="form-group">
+                  <label for="price" class="col-sm-1 control-label">Sub C</label>
+
+                  <div class="col-sm-5">
+                    <select class="form-control" id="subcategoryc" name="subcategoryc">
+                      <option value="" selected>- Select -</option>
+                      <?php
+                        $conn = $pdo->open();
+
+                        $stmt = $conn->prepare("SELECT * FROM sub_category");
+                        $stmt->execute();
+
+                        foreach($stmt as $crow){ 
+                          echo "
+                            <option value='".$crow['id']."'>".$crow['sub_categoryname']."</option>
+                          ";
+                        }
+
+                        $pdo->close();
+                      ?>
+                    </select>
+                  </div>
+
+                  <label for="photo" class="col-sm-1 control-label">Photo</label>
+
+                  <div class="col-sm-5">
+                     <input type="file" id="photo" name="photo">
+                  </div>
+                </div>
                 <div class="form-group">
                   <label for="price" class="col-sm-1 control-label">Price</label>
 
@@ -95,12 +124,35 @@
                     <input type="text" class="form-control" id="price" name="price" required>
                   </div>
 
-                  <label for="photo" class="col-sm-1 control-label">Photo</label>
+                  <label for="price" class="col-sm-1 control-label">Compare</label>
 
                   <div class="col-sm-5">
-                    <input type="file" id="photo" name="photo">
+                    <input type="text" class="form-control" id="compareprice" name="compareprice" required>
                   </div>
                 </div>
+
+                <div class="form-group">
+                  <label for="price" class="col-sm-1 control-label">Shipping</label>
+
+                  <div class="col-sm-5">
+                    <input type="text" class="form-control" id="shipping" name="shipping" required>
+                  </div>
+
+                  <label for="price" class="col-sm-1 control-label">Seller</label>
+
+                  <div class="col-sm-5">
+                    <input type="text" class="form-control" id="seller" name="seller" required>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="price" class="col-sm-1 control-label">Minimum Order</label>
+
+                  <div class="col-sm-5">
+                    <input type="text" class="form-control" id="minimumorder" name="minimumorder" required>
+                  </div>
+                </div>
+
                 <p><b>Description</b></p>
                 <div class="form-group">
                   <div class="col-sm-12">

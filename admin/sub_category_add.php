@@ -4,7 +4,7 @@
 
 	if(isset($_POST['add'])){
 		$name = $_POST['name'];
-
+		$categoryid = $_POST['categoryid'];
 		$conn = $pdo->open();
 
 		$stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM sub_category WHERE sub_categoryname=:name");
@@ -16,8 +16,8 @@
 		}
 		else{
 			try{
-				$stmt = $conn->prepare("INSERT INTO sub_category (sub_categoryname) VALUES (:name)");
-				$stmt->execute(['name'=>$name]);
+				$stmt = $conn->prepare("INSERT INTO sub_category (category_id,sub_categoryname) VALUES (:categoryid,:name)");
+				$stmt->execute(['categoryid' =>$categoryid,'name'=>$name]);
 				$_SESSION['success'] = 'Sub Category added successfully';
 			}
 			catch(PDOException $e){

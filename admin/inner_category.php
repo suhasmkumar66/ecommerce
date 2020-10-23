@@ -11,12 +11,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Sub Category A
+        Sub Category B
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li>Products</li>
-        <li class="active">Sub Category A</li>
+        <li class="active">Sub Category B</li>
       </ol>
     </section>
 
@@ -53,8 +53,8 @@
             <div class="box-body">
               <table id="example1" class="table table-bordered">
                 <thead>
-                  <th>Category Name</th>
                   <th>Sub Category A</th>
+                  <th>Sub Category B</th>
                   <th>Tools</th>
                 </thead>
                 <tbody>
@@ -62,13 +62,13 @@
                     $conn = $pdo->open();
 
                     try{
-                      $stmt = $conn->prepare("SELECT sc.sub_categoryname,sc.id,cat.name FROM sub_category as sc,category as cat where sc.category_id = cat.id");
+                      $stmt = $conn->prepare("SELECT ic.inner_name,ic.id,sc.sub_categoryname FROM sub_category as sc,inner_category as ic where ic.sub_categoryid = sc.id");
                       $stmt->execute();
                       foreach($stmt as $row){
                         echo "
                           <tr>
-                          <td>".$row['name']."</td>
                             <td>".$row['sub_categoryname']."</td>
+                            <td>".$row['inner_name']."</td>
                             <td>
                               <button class='btn btn-success btn-sm edit btn-flat' data-id='".$row['id']."'><i class='fa fa-edit'></i> Edit</button>
                               <button class='btn btn-danger btn-sm delete btn-flat' data-id='".$row['id']."'><i class='fa fa-trash'></i> Delete</button>
@@ -93,7 +93,7 @@
      
   </div>
   	<?php include 'includes/footer.php'; ?>
-    <?php include 'includes/sub_category_modal.php'; ?>
+    <?php include 'includes/inner_category_modal.php'; ?>
 
 </div>
 <!-- ./wrapper -->
@@ -121,14 +121,14 @@ function getRow(id){
   $('#catselected').val('');
   $.ajax({
     type: 'POST',
-    url: 'sub_category_row.php',
+    url: 'inner_category_row.php',
     data: {id:id},
     dataType: 'json',
     success: function(response){
       $('.catid').val(response[0].id);
-      $('#edit_name').val(response[0].sub_categoryname);
-      $('.catname').html(response[0].sub_categoryname);
-      $('#catselected').val(response[0].category_id).html(response[0].category_name);
+      $('#edit_name').val(response[0].inner_name);
+      $('.catname').html(response[0].inner_name);
+      $('#catselected').val(response[0].sub_categoryid).html(response[0].sub_categoryname);
     }
   });
 }

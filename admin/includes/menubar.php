@@ -29,7 +29,9 @@
         <ul class="treeview-menu">
           <li><a href="products.php"><i class="fa fa-circle-o"></i> Product List</a></li>
           <li><a href="category.php"><i class="fa fa-circle-o"></i> Category</a></li>
-          <li><a href="sub_category.php"><i class="fa fa-circle-o"></i> Sub Category</a></li>
+          <li><a href="sub_category.php"><i class="fa fa-circle-o"></i> Sub Category A</a></li>
+          <li><a href="inner_category.php"><i class="fa fa-circle-o"></i>Sub Category B</a></li>
+          <li><a href="inner_subcategory.php"><i class="fa fa-circle-o"></i>Sub Category C</a></li>
         </ul>
       </li>
     </ul>

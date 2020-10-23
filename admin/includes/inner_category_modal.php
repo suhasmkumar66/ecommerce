@@ -5,24 +5,24 @@
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title"><b>Add New SubCategory</b></h4>
+              <h4 class="modal-title"><b>Add New Inner Category</b></h4>
             </div>
             <div class="modal-body">
-              <form class="form-horizontal" method="POST" action="sub_category_add.php">
+              <form class="form-horizontal" method="POST" action="inner_category_add.php">
                 <div class = "form-group">
-                  <label for="name" class="col-sm-3 control-label">Category</label>
+                  <label for="name" class="col-sm-3 control-label">Sub Category</label>
                   <div class="col-sm-9">
-                      <select class="form-control" id="categoryid" name="categoryid">
+                      <select class="form-control" id="subcategoryid" name="subcategoryid">
                       <option value="" selected>- Select -</option>
                       <?php
                         $conn = $pdo->open();
 
-                        $stmt = $conn->prepare("SELECT * FROM category");
+                        $stmt = $conn->prepare("SELECT * FROM sub_category");
                         $stmt->execute();
 
                         foreach($stmt as $crow){ 
                           echo "
-                            <option value='".$crow['id']."'>".$crow['name']."</option>
+                            <option value='".$crow['id']."'>".$crow['sub_categoryname']."</option>
                           ";
                         }
 
@@ -55,25 +55,25 @@
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title"><b>Edit SubCategory</b></h4>
+              <h4 class="modal-title"><b>Edit Inner Category</b></h4>
             </div>
             <div class="modal-body">
-              <form class="form-horizontal" method="POST" action="sub_category_edit.php">
+              <form class="form-horizontal" method="POST" action="inner_category_edit.php">
                 <input type="hidden" class="catid" name="id">
                 <div class = "form-group">
                   <label for="name" class="col-sm-3 control-label">Category</label>
                   <div class="col-sm-9">
-                      <select class="form-control" id="editcategoryid" name="editcategoryid">
+                      <select class="form-control" id="editsubcategoryid" name="editsubcategoryid">
                       <option selected id="catselected"></option>
                       <?php
                         $conn = $pdo->open();
 
-                        $stmt = $conn->prepare("SELECT * FROM category");
+                        $stmt = $conn->prepare("SELECT * FROM sub_category");
                         $stmt->execute();
 
                         foreach($stmt as $crow){ 
                           echo "
-                            <option value='".$crow['id']."'>".$crow['name']."</option>
+                            <option value='".$crow['id']."'>".$crow['sub_categoryname']."</option>
                           ";
                         }
 
@@ -109,10 +109,10 @@
               <h4 class="modal-title"><b>Deleting...</b></h4>
             </div>
             <div class="modal-body">
-              <form class="form-horizontal" method="POST" action="sub_category_delete.php">
+              <form class="form-horizontal" method="POST" action="inner_category_delete.php">
                 <input type="hidden" class="catid" name="id">
                 <div class="text-center">
-                    <p>DELETE SUBCATEGORY</p>
+                    <p>DELETE Inner Category</p>
                     <h2 class="bold catname"></h2>
                 </div>
             </div>
